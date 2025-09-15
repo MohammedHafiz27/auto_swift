@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "190112438733",
+    "project_id": "autoswift-mh",
+    "storage_bucket": "autoswift-mh.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:190112438733:android:fdbb49dfdb48bd60eb4c84",
+        "android_client_info": {
+          "package_name": "com.example.auto_swift"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8kAyGr4lQE7QFSEFb0rKXxtMIC5fNi5U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
