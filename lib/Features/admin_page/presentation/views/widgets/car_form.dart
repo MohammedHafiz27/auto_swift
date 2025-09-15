@@ -1,6 +1,13 @@
+import 'package:auto_swift/Core/utils/custom_snack_bar.dart';
 import 'package:auto_swift/Core/widgets/custom_text_field.dart';
+import 'package:auto_swift/Features/admin_page/presentation/view_models/car_cubit/car_cubit.dart';
+import 'package:auto_swift/Features/admin_page/presentation/view_models/car_cubit/car_state.dart';
 import 'package:auto_swift/Features/admin_page/presentation/views/widgets/drob_down_button.dart';
+import 'package:auto_swift/Features/admin_page/presentation/views/widgets/pick_image_widget.dart';
+import 'package:auto_swift/Features/admin_page/presentation/views/widgets/row_text_field.dart';
+import 'package:auto_swift/Features/admin_page/presentation/views/widgets/submit_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CarForm extends StatefulWidget {
   const CarForm({super.key});
@@ -18,6 +25,7 @@ class _CarFormState extends State<CarForm> {
 
   List<String> brands = ['BMW', 'Audi', 'Mercedes'];
   String? selectedBrand;
+
   @override
   void dispose() {
     _carNameController.dispose();
@@ -30,57 +38,56 @@ class _CarFormState extends State<CarForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      spacing: 8,
-      children: [
-        CustomTextField(hintText: "Car Name", controller: _carNameController, keyboardType: TextInputType.text),
-        CustomTextField(hintText: "Car Price", controller: _carPriceController, keyboardType: TextInputType.number),
-        Row(
-          spacing: 8,
+    return BlocConsumer<CarCubit, CarState>(
+      listener: (context, state) {
+        if (state is CarSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            CustomSnackBar(message: 'Car uploaded successfully!', backgroundColor: Colors.green) as SnackBar,
+          );
+        } else if (state is CarFailure) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(CustomSnackBar(message: 'Failed: ${state.message}', backgroundColor: Colors.red) as SnackBar);
+        }
+      },
+      builder: (context, state) {
+        return Column(
+          spacing: 12,
           children: [
-            Expanded(
-              child: CustomTextField(
-                hintText: "Car Engine",
-                controller: _carEngineController,
-                keyboardType: TextInputType.text,
-              ),
+            CustomTextField(hintText: "Car Name", controller: _carNameController, keyboardType: TextInputType.text),
+            CustomTextField(hintText: "Car Price", controller: _carPriceController, keyboardType: TextInputType.number),
+            RowTextField(
+              carEngineController: _carEngineController,
+              carSpeedController: _carSpeedController,
+              carSeatsController: _carSeatsController,
             ),
-            Expanded(
-              child: CustomTextField(
-                hintText: "Car Speed",
-                controller: _carSpeedController,
-                keyboardType: TextInputType.number,
-              ),
+            CustomDrobDownButton(
+              items: brands.map((brand) => DropdownMenuItem<String>(value: brand, child: Text(brand))).toList(),
+              onChanged: (v) {
+                setState(() {
+                  selectedBrand = v as String?;
+                });
+              },
+              value: selectedBrand,
+              hint: 'Car brand',
+              valid: 'Please select an option.',
             ),
-            Expanded(
-              child: CustomTextField(
-                hintText: "Car Seats",
-                controller: _carSeatsController,
-                keyboardType: TextInputType.number,
+            const PickImageWidget(),
+            AbsorbPointer(
+              absorbing: state is CarLoading,
+              child: SubmitButton(
+                carNameController: _carNameController,
+                carPriceController: _carPriceController,
+                carEngineController: _carEngineController,
+                carSpeedController: _carSpeedController,
+                carSeatsController: _carSeatsController,
+                selectedBrand: selectedBrand,
+                state: state,
               ),
             ),
           ],
-        ),
-        CustomDrobDownButton(
-          items: brands.map((brand) => DropdownMenuItem<String>(value: brand, child: Text(brand))).toList(),
-          onChanged: (v) {
-            setState(() {
-              selectedBrand = v as String?;
-            });
-          },
-          value: selectedBrand,
-          hint: 'Car brand',
-          valid: 'Please select an option.',
-        ),
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            minimumSize: Size(double.infinity, 48),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          ),
-          onPressed: () {},
-          child: Text("Add Car"),
-        ),
-      ],
+        );
+      },
     );
   }
 }
