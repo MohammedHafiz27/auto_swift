@@ -41,13 +41,9 @@ class _CarFormState extends State<CarForm> {
     return BlocConsumer<CarCubit, CarState>(
       listener: (context, state) {
         if (state is CarSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            CustomSnackBar(message: 'Car uploaded successfully!', backgroundColor: Colors.green) as SnackBar,
-          );
+          ScaffoldMessenger.of(context).showSnackBar(CustomSnackBar.build(message: 'Car added successfully', backgroundColor: Colors.green));
         } else if (state is CarFailure) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(CustomSnackBar(message: 'Failed: ${state.message}', backgroundColor: Colors.red) as SnackBar);
+          ScaffoldMessenger.of(context).showSnackBar(CustomSnackBar.build(message: 'Failed: ${state.message}', backgroundColor: Colors.red));
         }
       },
       builder: (context, state) {
