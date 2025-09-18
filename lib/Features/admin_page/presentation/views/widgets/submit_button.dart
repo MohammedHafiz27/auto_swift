@@ -1,4 +1,4 @@
-
+import 'package:auto_swift/Features/admin_page/data/models/car_model.dart';
 import 'package:auto_swift/Features/admin_page/presentation/view_models/car_cubit/car_cubit.dart';
 import 'package:auto_swift/Features/admin_page/presentation/view_models/car_cubit/car_state.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,8 @@ class SubmitButton extends StatelessWidget {
     required TextEditingController carEngineController,
     required TextEditingController carSpeedController,
     required TextEditingController carSeatsController,
-    required this.selectedBrand, required this.state,
+    required this.selectedBrand,
+    required this.state,
   }) : _carNameController = carNameController,
        _carPriceController = carPriceController,
        _carEngineController = carEngineController,
@@ -36,12 +37,15 @@ class SubmitButton extends StatelessWidget {
       ),
       onPressed: () {
         context.read<CarCubit>().submitCar(
-          name: _carNameController.text,
-          price: _carPriceController.text,
-          engine: _carEngineController.text,
-          speed: _carSpeedController.text,
-          seats: _carSeatsController.text,
-          brand: selectedBrand ?? '',
+          carModel: CarModel(
+            brand: selectedBrand ?? '',
+            name: _carNameController.text,
+            price: _carPriceController.text,
+            engine: _carEngineController.text,
+            speed: _carSpeedController.text,
+            seats: _carSeatsController.text,
+            imageUrl: context.read<CarCubit>().imageUrl ?? '',
+          ),
         );
       },
       child: state is CarLoading

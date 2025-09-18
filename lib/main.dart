@@ -1,5 +1,5 @@
 import 'package:auto_swift/Core/utils/app_theme.dart';
-import 'package:auto_swift/Features/admin_page/presentation/views/admin_page_view.dart';
+import 'package:auto_swift/Features/home_page/presentation/view/home_page.dart';
 import 'package:auto_swift/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +15,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(theme: AppTheme.lightTheme, themeMode: ThemeMode.light, home: AdminPageView());
+    return MaterialApp(
+      theme: AppTheme.lightTheme.copyWith(scaffoldBackgroundColor: Colors.white),
+      themeMode: ThemeMode.light,
+      home: HomePage(),
+    );
   }
 }

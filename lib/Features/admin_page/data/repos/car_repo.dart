@@ -1,12 +1,8 @@
+import 'package:auto_swift/Features/admin_page/data/models/car_model.dart';
+
 abstract class CarRepo {
   Future<String> uploadCarImage(); 
   Future<void> addCar({
-    required String name,
-    required String price,
-    required String engine,
-    required String speed,
-    required String seats,
-    required String brand,
-    required String imageUrl,
+required CarModel carModel,
   });
 }

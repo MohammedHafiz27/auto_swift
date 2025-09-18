@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:auto_swift/Features/admin_page/data/models/car_model.dart';
 import 'package:auto_swift/Features/admin_page/data/repos/car_repo.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -23,23 +24,16 @@ class CarRepoImpl implements CarRepo {
   }
 
   @override
-  Future<void> addCar({
-    required String name,
-    required String price,
-    required String engine,
-    required String speed,
-    required String seats,
-    required String brand,
-    required String imageUrl,
+  Future<void> addCar({required CarModel carModel
   }) async {
     await firestore.collection("cars").add({
-      "name": name,
-      "price": price,
-      "engine": engine,
-      "speed": speed,
-      "seats": seats,
-      "brand": brand,
-      "image": imageUrl,
+      "name": carModel.name,
+      "price": carModel.price,
+      "engine": carModel.engine,
+      "speed": carModel.speed,
+      "seats": carModel.seats,
+      "brand": carModel.brand,
+      "imageUrl": carModel.imageUrl,
       "createdAt": DateTime.now(),
     });
   }

@@ -6,7 +6,6 @@ class CarModel {
   final String speed;
   final String seats;
   final String imageUrl;
-  final String id;
   CarModel({
     required this.brand,
     required this.name,
@@ -15,7 +14,6 @@ class CarModel {
     required this.speed,
     required this.seats,
     required this.imageUrl,
-    required this.id,
   });
 
   factory CarModel.fromJson(json) {
@@ -26,8 +24,7 @@ class CarModel {
       engine: json['engine'],
       speed: json['speed'],
       seats: json['seats'],
-      imageUrl: json['imageUrl'],
-      id: json['id'],
+      imageUrl: json['image'],
     );
   }
 }

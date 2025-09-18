@@ -1,5 +1,5 @@
 import 'package:auto_swift/Core/utils/size_config.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 abstract class AppStyles {
   static TextStyle styleSemiBold18(BuildContext context) {
@@ -7,6 +7,14 @@ abstract class AppStyles {
       color: Color(0xff000000),
       fontWeight: FontWeight.w600,
       fontSize: getResponsiveFontSize(context, fontSize: 18),
+    );
+  }
+
+  static TextStyle styleSemiBold14(BuildContext context) {
+    return TextStyle(
+      color: Colors.grey,
+      fontWeight: FontWeight.w600,
+      fontSize: getResponsiveFontSize(context, fontSize: 14),
     );
   }
 
@@ -31,6 +39,22 @@ abstract class AppStyles {
       color: Color(0xff000000),
       fontWeight: FontWeight.w400,
       fontSize: getResponsiveFontSize(context, fontSize: 14),
+    );
+  }
+
+  static TextStyle styleSemiBold35(BuildContext context) {
+    return TextStyle(
+      color: Color(0xff000000),
+      fontWeight: FontWeight.w600,
+      fontSize: getResponsiveFontSize(context, fontSize: 35),
+    );
+  }
+
+  static TextStyle styleRegular35(BuildContext context) {
+    return TextStyle(
+      color: Color(0xff000000),
+      fontWeight: FontWeight.w400,
+      fontSize: getResponsiveFontSize(context, fontSize: 35),
     );
   }
 }
