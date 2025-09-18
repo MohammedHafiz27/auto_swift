@@ -47,3 +47,4 @@ lib/firebase_options.dart
 firebase.json
 generate_structure.dart
 android/app/google-services.json
+macos/Runner/GoogleService-Info.plist
