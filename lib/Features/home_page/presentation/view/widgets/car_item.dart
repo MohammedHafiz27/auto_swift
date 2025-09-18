@@ -21,18 +21,18 @@ class CarItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(car.name, style: AppStyles.styleRegular16(context)),
                 Text(
-                  "V12",
+                  car.brand,
                   style: AppStyles.styleRegular16(
                     context,
                   ).copyWith(color: Colors.blueAccent, fontWeight: FontWeight.w500),
                 ),
+                Text(car.name, style: AppStyles.styleSemiBold18(context)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("\$120", style: AppStyles.styleSemiBold18(context)),
-                    Icon(Icons.arrow_circle_right_rounded),
+                    Text("\$${car.price}", style: AppStyles.styleSemiBold18(context)),
+                    Icon(Icons.arrow_circle_right_rounded, color: Colors.blueAccent),
                   ],
                 ),
               ],

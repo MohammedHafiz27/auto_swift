@@ -1,3 +1,4 @@
+import 'package:auto_swift/Core/car_brands.dart';
 import 'package:auto_swift/Core/utils/custom_snack_bar.dart';
 import 'package:auto_swift/Core/widgets/custom_text_field.dart';
 import 'package:auto_swift/Features/admin_page/presentation/view_models/car_cubit/car_cubit.dart';
@@ -23,7 +24,7 @@ class _CarFormState extends State<CarForm> {
   final TextEditingController _carSpeedController = TextEditingController();
   final TextEditingController _carSeatsController = TextEditingController();
 
-  List<String> brands = ['BMW', 'Audi', 'Mercedes'];
+ 
   String? selectedBrand;
 
   @override
@@ -58,7 +59,7 @@ class _CarFormState extends State<CarForm> {
               carSeatsController: _carSeatsController,
             ),
             CustomDrobDownButton(
-              items: brands.map((brand) => DropdownMenuItem<String>(value: brand, child: Text(brand))).toList(),
+              items: CarBrands.brands.map((brand) => DropdownMenuItem<String>(value: brand, child: Text(brand))).toList(),
               onChanged: (v) {
                 setState(() {
                   selectedBrand = v as String?;

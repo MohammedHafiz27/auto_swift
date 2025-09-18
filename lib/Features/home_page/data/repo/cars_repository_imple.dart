@@ -12,4 +12,13 @@ class CarsRepositoryImple implements CarsRepository {
         .snapshots()
         .map((snapshot) => snapshot.docs.map((doc) => CarModel.fromJson(doc.data())).toList());
   }
+
+  @override
+  Stream<List<CarModel>> fetchCarsByBrand(String brand) {
+    return _firestore
+        .collection('cars')
+        .where('brand', isEqualTo: brand)
+        .snapshots()
+        .map((snapshot) => snapshot.docs.map((doc) => CarModel.fromJson(doc.data())).toList());
+  }
 }
