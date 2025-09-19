@@ -13,7 +13,7 @@ class CarItemGridView extends StatefulWidget {
 }
 
 class _CarItemGridViewState extends State<CarItemGridView> {
-  String? selectedBrand;   
+  String? selectedBrand;
   @override
   Widget build(BuildContext context) {
     final repo = CarsRepositoryImple();
@@ -22,7 +22,7 @@ class _CarItemGridViewState extends State<CarItemGridView> {
       spacing: 12,
       children: [
         BrandItemListView(
-          brands: CarBrands.brands,
+          brands: CarBrands.brands.contains("all") ? CarBrands.brands : ["all", ...CarBrands.brands],
           brandName: selectedBrand ?? '',
           onBrandSelected: (brand) {
             setState(() {
@@ -32,7 +32,7 @@ class _CarItemGridViewState extends State<CarItemGridView> {
         ),
         Expanded(
           child: StreamBuilder<List<CarModel>>(
-            stream: selectedBrand == null || selectedBrand!.isEmpty
+            stream: selectedBrand == null || selectedBrand!.isEmpty || selectedBrand == "all"
                 ? repo.fetchCarsOnce()
                 : repo.fetchCarsByBrand(selectedBrand!),
             builder: (context, snapshot) {

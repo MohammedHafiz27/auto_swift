@@ -1,3 +1,3 @@
 class CarBrands {
-  static const List<String> brands = ['BMW', 'Audi', 'Mercedes'];
+  static List<String> brands = ['BMW', 'Audi', 'Mercedes'];
 }
