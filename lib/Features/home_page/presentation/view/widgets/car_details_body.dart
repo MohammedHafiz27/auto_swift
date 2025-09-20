@@ -1,5 +1,7 @@
 import 'package:auto_swift/Core/utils/app_styles.dart';
 import 'package:auto_swift/Features/admin_page/data/models/car_model.dart';
+import 'package:auto_swift/Features/home_page/presentation/view/widgets/custom_car_details_info.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class CarDetailsBody extends StatelessWidget {
@@ -13,24 +15,21 @@ class CarDetailsBody extends StatelessWidget {
       spacing: 16,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image.network(car.imageUrl),
+        AspectRatio(
+          aspectRatio: 16 / 9,
+          child: CachedNetworkImage(
+            imageUrl: car.imageUrl,
+            fit: BoxFit.cover,
+            placeholder: (context, url) => Container(color: Colors.grey[300]),
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 12,
             children: [
-              Text("Car Name: ${car.name}", style: AppStyles.styleSemiBold22(context)),
-              Text("Price: \$${car.price}", style: AppStyles.styleSemiBold22(context)),
-              Text("Brand: ${car.brand}", style: AppStyles.styleSemiBold22(context)),
-              SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Engine: ${car.engine}", style: AppStyles.styleSemiBold18(context)),
-                  Text("Speed: ${car.speed}", style: AppStyles.styleSemiBold18(context)),
-                  Text("Seats: ${car.seats}", style: AppStyles.styleSemiBold18(context)),
-                ],
-              ),
+              CustomCarDetailsInfo(car: car),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blueAccent,
