@@ -23,7 +23,7 @@ class CustomDrobDownButton extends StatelessWidget {
         filled: true,
         focusColor: Colors.transparent,
         enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey.shade300)),
-        fillColor: Colors.white,
+        fillColor: Theme.brightnessOf(context) == Brightness.dark ? Colors.black : Colors.white,
         isDense: true,
         contentPadding: EdgeInsets.all(12),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),

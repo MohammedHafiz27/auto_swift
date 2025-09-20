@@ -32,7 +32,11 @@ class AuthPageBody extends StatelessWidget {
                   password: passwordController.text,
                 );
               },
-              child: state is AuthLoading ? CircularProgressIndicator.adaptive() : const Text("Login"),
+              child: state is AuthLoading
+                  ? CircularProgressIndicator.adaptive(
+                      backgroundColor: Theme.brightnessOf(context) == Brightness.dark ? Colors.black : Colors.white,
+                    )
+                  : const Text("Login"),
             ),
           ),
           GestureDetector(

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 abstract class AppStyles {
   static TextStyle styleSemiBold18(BuildContext context) {
     return TextStyle(
-      color: Color(0xff000000),
+      color: Theme.of(context).textTheme.bodyLarge?.color,
       fontWeight: FontWeight.w600,
       fontSize: getResponsiveFontSize(context, fontSize: 18),
     );
@@ -20,7 +20,7 @@ abstract class AppStyles {
 
   static TextStyle styleSemiBold22(BuildContext context) {
     return TextStyle(
-      color: Color(0xff000000),
+      color: Theme.of(context).textTheme.bodyLarge?.color,
       fontWeight: FontWeight.w600,
       fontSize: getResponsiveFontSize(context, fontSize: 22),
     );
@@ -28,7 +28,7 @@ abstract class AppStyles {
 
   static TextStyle styleRegular16(BuildContext context) {
     return TextStyle(
-      color: Color(0xff000000),
+      color: Theme.of(context).textTheme.bodyLarge?.color,
       fontWeight: FontWeight.w400,
       fontSize: getResponsiveFontSize(context, fontSize: 16),
     );
@@ -36,7 +36,7 @@ abstract class AppStyles {
 
   static TextStyle styleRegular14(BuildContext context) {
     return TextStyle(
-      color: Color(0xff000000),
+      color: Theme.of(context).textTheme.bodyLarge?.color,
       fontWeight: FontWeight.w400,
       fontSize: getResponsiveFontSize(context, fontSize: 14),
     );
@@ -44,7 +44,7 @@ abstract class AppStyles {
 
   static TextStyle styleSemiBold35(BuildContext context) {
     return TextStyle(
-      color: Color(0xff000000),
+      color: Theme.of(context).textTheme.bodyLarge?.color,
       fontWeight: FontWeight.w600,
       fontSize: getResponsiveFontSize(context, fontSize: 35),
     );
@@ -52,7 +52,7 @@ abstract class AppStyles {
 
   static TextStyle styleRegular35(BuildContext context) {
     return TextStyle(
-      color: Color(0xff000000),
+      color: Theme.of(context).textTheme.bodyLarge?.color,
       fontWeight: FontWeight.w400,
       fontSize: getResponsiveFontSize(context, fontSize: 35),
     );

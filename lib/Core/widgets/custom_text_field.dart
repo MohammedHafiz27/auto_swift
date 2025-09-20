@@ -12,12 +12,14 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       obscureText: hintText.toLowerCase() == "password" ? true : false,
-      cursorColor: Colors.black,
+      cursorColor: Theme.brightnessOf(context) == Brightness.dark ? Colors.white : Colors.black,
       style: AppStyles.styleSemiBold18(context),
       decoration: InputDecoration(
         hintText: hintText,
         border: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-        focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Theme.brightnessOf(context) == Brightness.dark ? Colors.white : Colors.black),
+        ),
       ),
       controller: controller,
       keyboardType: keyboardType,

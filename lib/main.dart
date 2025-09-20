@@ -1,3 +1,5 @@
+import 'package:auto_swift/Core/app_cubit/app_cubit.dart';
+import 'package:auto_swift/Core/helper/cache_helper.dart';
 import 'package:auto_swift/Core/utils/app_route.dart';
 import 'package:auto_swift/Core/utils/app_theme.dart';
 import 'package:auto_swift/Features/auth_page/data/repo/auth_repo_imple.dart';
@@ -11,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  CacheHelper.init();
   runApp(const MyApp());
 }
 
@@ -19,13 +22,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(AuthRepoImple(firebaseAuth: FirebaseAuth.instance)),
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.lightTheme,
-        themeMode: ThemeMode.light,
-        routerConfig: AppRoute.router,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => AuthCubit(AuthRepoImple(firebaseAuth: FirebaseAuth.instance))),
+        BlocProvider(create: (context) => AppCubit()),
+      ],
+      child: BlocBuilder<AppCubit, ThemeMode>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: state,
+            routerConfig: AppRoute.router,
+          );
+        },
       ),
     );
   }

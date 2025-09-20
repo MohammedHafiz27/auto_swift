@@ -38,11 +38,11 @@ class CarItem extends StatelessWidget {
                     context,
                   ).copyWith(color: Colors.blueAccent, fontWeight: FontWeight.w500),
                 ),
-                Text(car.name, style: AppStyles.styleSemiBold18(context)),
+                Text(car.name, style: AppStyles.styleSemiBold18(context).copyWith(color: Colors.black)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("\$${car.price}", style: AppStyles.styleSemiBold18(context)),
+                    Text("\$${car.price}", style: AppStyles.styleSemiBold18(context).copyWith(color: Colors.black)),
                     Icon(Icons.arrow_circle_right_rounded, color: Colors.blueAccent),
                   ],
                 ),

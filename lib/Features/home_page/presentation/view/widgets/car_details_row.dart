@@ -15,7 +15,7 @@ class CarDetailsRow extends StatelessWidget {
           decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.blueAccent),
           child: Icon(icon, color: Colors.white, size: 28),
         ),
-        Text(title, style: AppStyles.styleSemiBold18(context)),
+        Text(title, style: AppStyles.styleSemiBold18(context).copyWith(color: Colors.black)),
       ],
     );
   }

@@ -20,7 +20,7 @@ class CustomCarDetailsInfo extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(car.name, style: AppStyles.styleSemiBold22(context)),
+              Text(car.name, style: AppStyles.styleSemiBold22(context).copyWith(color: Colors.black)),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(color: Colors.blueAccent, borderRadius: BorderRadius.circular(8)),
@@ -28,7 +28,7 @@ class CustomCarDetailsInfo extends StatelessWidget {
               ),
             ],
           ),
-          Text("Price: \$${car.price}", style: AppStyles.styleSemiBold22(context)),
+          Text("Price: \$${car.price}", style: AppStyles.styleSemiBold22(context).copyWith(color: Colors.black)),
           Divider(indent: 16, endIndent: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

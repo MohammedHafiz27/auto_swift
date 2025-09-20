@@ -1,3 +1,4 @@
+import 'package:auto_swift/Core/utils/app_styles.dart';
 import 'package:auto_swift/Features/admin_page/presentation/view_models/car_cubit/car_cubit.dart';
 import 'package:auto_swift/Features/admin_page/presentation/view_models/car_cubit/car_state.dart';
 import 'package:flutter/material.dart';
@@ -34,9 +35,15 @@ class PickImageWidget extends StatelessWidget {
             );
           } else {
             return TextButton.icon(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Theme.brightnessOf(context) == Brightness.dark ? Colors.white : Colors.black,
+              ),
               onPressed: () => context.read<CarCubit>().pickImage(),
-              icon: const Icon(Icons.image),
-              label: const Text("Pick Image"),
+              icon: Icon(
+                Icons.image,
+                color: Theme.brightnessOf(context) == Brightness.dark ? Colors.white : Colors.black,
+              ),
+              label: Text("Pick Image", style: AppStyles.styleRegular16(context)),
             );
           }
         },

@@ -1,12 +1,11 @@
-
+import 'package:auto_swift/Core/app_cubit/app_cubit.dart';
 import 'package:auto_swift/Core/utils/app_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePageHeader extends StatelessWidget {
-  const HomePageHeader({
-    super.key,
-  });
+  const HomePageHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,15 @@ class HomePageHeader extends StatelessWidget {
           ),
         ),
         Text("Boston , New York", style: AppStyles.styleSemiBold14(context)),
-        Icon(CupertinoIcons.circle_grid_3x3_fill, size: 28),
+        IconButton(
+          onPressed: () {
+            context.read<AppCubit>().toggleTheme();
+          },
+          icon: Icon(
+            context.watch<AppCubit>().state == ThemeMode.dark ? CupertinoIcons.sun_max : CupertinoIcons.moon_stars,
+            size: 28,
+          ),
+        ),
       ],
     );
   }
