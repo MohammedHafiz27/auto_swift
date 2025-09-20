@@ -18,7 +18,7 @@ class CarItem extends StatelessWidget {
             imageUrl: car.imageUrl,
             height: 200,
             width: double.infinity,
-            fit: BoxFit.cover,
+
             placeholder: (context, url) => Container(
               height: 200,
               width: double.infinity,
