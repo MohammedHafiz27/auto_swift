@@ -1,5 +1,6 @@
 import 'package:auto_swift/Core/utils/app_styles.dart';
 import 'package:auto_swift/Features/admin_page/data/models/car_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class CarItem extends StatelessWidget {
@@ -13,8 +14,18 @@ class CarItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.network(
-            "https://img.freepik.com/free-psd/modern-car-isolated_23-2151504562.jpg?semt=ais_incoming&w=740&q=80",
+          CachedNetworkImage(
+            imageUrl: car.imageUrl,
+            height: 200,
+            width: double.infinity,
+            fit: BoxFit.cover,
+            placeholder: (context, url) => Container(
+              height: 200,
+              width: double.infinity,
+              color: Colors.grey.shade300,
+              child: Center(child: CircularProgressIndicator(color: Colors.blueAccent)),
+            ),
+            errorWidget: (context, url, error) => Icon(Icons.error),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),

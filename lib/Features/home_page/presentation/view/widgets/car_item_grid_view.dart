@@ -1,9 +1,11 @@
 import 'package:auto_swift/Core/car_brands.dart';
+import 'package:auto_swift/Core/utils/app_route.dart';
 import 'package:auto_swift/Features/admin_page/data/models/car_model.dart';
 import 'package:auto_swift/Features/home_page/data/repo/cars_repository_imple.dart';
 import 'package:auto_swift/Features/home_page/presentation/view/widgets/brand_item_list_view.dart';
 import 'package:auto_swift/Features/home_page/presentation/view/widgets/car_item.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CarItemGridView extends StatefulWidget {
   const CarItemGridView({super.key});
@@ -54,7 +56,12 @@ class _CarItemGridViewState extends State<CarItemGridView> {
                   crossAxisSpacing: 3,
                 ),
                 itemBuilder: (context, index) {
-                  return CarItem(car: cars[index]);
+                  return GestureDetector(
+                    onTap: () {
+                      context.push(AppRoute.carDetails, extra: cars[index]);
+                    },
+                    child: CarItem(car: cars[index]),
+                  );
                 },
               );
             },
