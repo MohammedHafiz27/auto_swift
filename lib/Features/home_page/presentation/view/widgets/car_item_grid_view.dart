@@ -29,6 +29,7 @@ class _CarItemGridViewState extends State<CarItemGridView> {
               selectedBrand = brand;
             });
           },
+          isSelected: CarBrands.brands.indexOf(selectedBrand ?? 'all') + 1,
         ),
         Expanded(
           child: StreamBuilder<List<CarModel>>(
