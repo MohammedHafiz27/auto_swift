@@ -24,8 +24,7 @@ class CarRepoImpl implements CarRepo {
   }
 
   @override
-  Future<void> addCar({required CarModel carModel
-  }) async {
+  Future<void> addCar({required CarModel carModel}) async {
     await firestore.collection("cars").add({
       "name": carModel.name,
       "price": carModel.price,
@@ -33,7 +32,7 @@ class CarRepoImpl implements CarRepo {
       "speed": carModel.speed,
       "seats": carModel.seats,
       "brand": carModel.brand,
-      "imageUrl": carModel.imageUrl,
+      "image": carModel.imageUrl,
       "createdAt": DateTime.now(),
     });
   }

@@ -17,7 +17,6 @@ class PickImageWidget extends StatelessWidget {
         border: Border.all(color: Colors.grey),
       ),
       child: BlocBuilder<CarCubit, CarState>(
-        buildWhen: (prev, curr) => curr is CarImageLoading || curr is CarImagePicked || curr is CarImageError,
         builder: (context, state) {
           if (state is CarImageLoading) {
             return const Center(child: CircularProgressIndicator());

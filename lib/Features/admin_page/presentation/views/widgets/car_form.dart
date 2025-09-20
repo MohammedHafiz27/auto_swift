@@ -24,7 +24,6 @@ class _CarFormState extends State<CarForm> {
   final TextEditingController _carSpeedController = TextEditingController();
   final TextEditingController _carSeatsController = TextEditingController();
 
- 
   String? selectedBrand;
 
   @override
@@ -42,11 +41,28 @@ class _CarFormState extends State<CarForm> {
     return BlocConsumer<CarCubit, CarState>(
       listener: (context, state) {
         if (state is CarSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(CustomSnackBar.build(message: 'Car added successfully', backgroundColor: Colors.green));
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(CustomSnackBar.build(message: 'Car added successfully', backgroundColor: Colors.green));
+
+          _carNameController.clear();
+          _carPriceController.clear();
+          _carEngineController.clear();
+          _carSpeedController.clear();
+          _carSeatsController.clear();
+
+          setState(() {
+            selectedBrand = null;
+          });
+
+          context.read<CarCubit>().resetImage();
         } else if (state is CarFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(CustomSnackBar.build(message: 'Failed: ${state.message}', backgroundColor: Colors.red));
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(CustomSnackBar.build(message: 'Failed: ${state.message}', backgroundColor: Colors.red));
         }
       },
+
       builder: (context, state) {
         return Column(
           spacing: 12,
@@ -59,7 +75,9 @@ class _CarFormState extends State<CarForm> {
               carSeatsController: _carSeatsController,
             ),
             CustomDrobDownButton(
-              items: CarBrands.brands.map((brand) => DropdownMenuItem<String>(value: brand, child: Text(brand))).toList(),
+              items: CarBrands.brands
+                  .map((brand) => DropdownMenuItem<String>(value: brand, child: Text(brand)))
+                  .toList(),
               onChanged: (v) {
                 setState(() {
                   selectedBrand = v as String?;

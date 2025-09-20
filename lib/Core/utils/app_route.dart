@@ -1,10 +1,13 @@
+import 'package:auto_swift/Core/functions/get_role.dart';
 import 'package:auto_swift/Features/admin_page/data/models/car_model.dart';
 import 'package:auto_swift/Features/admin_page/presentation/views/admin_page_view.dart';
+import 'package:auto_swift/Features/auth_page/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:auto_swift/Features/auth_page/presentation/views/auth_page.dart';
 import 'package:auto_swift/Features/auth_page/presentation/views/signup_page.dart';
 import 'package:auto_swift/Features/home_page/presentation/view/car_details.dart';
 import 'package:auto_swift/Features/home_page/presentation/view/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRoute {
@@ -13,12 +16,24 @@ abstract class AppRoute {
   static const String home = '/home';
   static const String signup = '/signup';
   static const String admin = '/admin';
+
   static GoRouter router = GoRouter(
     routes: [
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          return const AuthPage();
+          return BlocBuilder<AuthCubit, AuthState>(
+            builder: (context, authState) {
+              if (authState is AuthSuccess) {
+                if (getRoleFromEmail(context.read<AuthCubit>().role) == 'admin') {
+                  return AdminPageView();
+                }
+                return HomePage();
+              }
+
+              return const AuthPage();
+            },
+          );
         },
         routes: <RouteBase>[
           GoRoute(

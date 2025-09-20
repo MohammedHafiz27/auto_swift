@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_swift/Features/admin_page/data/models/car_model.dart';
 import 'package:auto_swift/Features/admin_page/data/repos/car_repo.dart';
 import 'package:auto_swift/Features/admin_page/presentation/view_models/car_cubit/car_state.dart';
@@ -19,18 +21,20 @@ class CarCubit extends Cubit<CarState> {
     }
   }
 
-  Future<void> submitCar({required CarModel carModel,
-  }) async {
+  Future<void> submitCar({required CarModel carModel}) async {
     try {
       if (imageUrl == null) throw Exception("Please pick an image first");
       emit(CarLoading());
-      await carRepo.addCar(
-        carModel: carModel
-      );
+      await carRepo.addCar(carModel: carModel);
 
       emit(CarSuccess());
     } catch (e) {
       emit(CarFailure(e.toString()));
     }
+  }
+
+  void resetImage() {
+    imageUrl = null;
+    emit(CarInitial());
   }
 }
