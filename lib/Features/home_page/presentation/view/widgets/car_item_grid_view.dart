@@ -1,5 +1,6 @@
 import 'package:auto_swift/Core/car_brands.dart';
 import 'package:auto_swift/Core/utils/app_route.dart';
+import 'package:auto_swift/Core/utils/size_config.dart';
 import 'package:auto_swift/Features/admin_page/data/models/car_model.dart';
 import 'package:auto_swift/Features/home_page/data/repo/cars_repository_imple.dart';
 import 'package:auto_swift/Features/home_page/presentation/view/widgets/brand_item_list_view.dart';
@@ -49,8 +50,8 @@ class _CarItemGridViewState extends State<CarItemGridView> {
               final cars = snapshot.data!;
               return GridView.builder(
                 itemCount: cars.length,
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  childAspectRatio: 1 / 1.5,
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  childAspectRatio: MediaQuery.sizeOf(context).width > SizeConfig.tabletBreakPoint ? 1 / 1.25 : 1 / 1.6,
                   maxCrossAxisExtent: 300,
                   mainAxisSpacing: 5,
                   crossAxisSpacing: 3,
